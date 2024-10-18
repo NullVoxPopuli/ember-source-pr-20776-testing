@@ -1,9 +1,12 @@
+import { template as buildTimeProbably } from '@ember/template-compiler';
 import { template } from '@ember/template-compiler/runtime';
+
+const greeting = 'folks';
 
 const Foo = template('Hello, {{greeting}}', {
   strict: true,
   scope: () => ({
-    greeting: 'folks',
+    greeting,
   })
 });
 
@@ -14,6 +17,13 @@ const Bar = template('Bar: <Foo />', {
 });
 
 const WithBlock = template('{{yield}}');
+
+const PreBuilt = buildTimeProbably('Built by tooling {{greeting}}', {
+  strict: true,
+  scope: () => ({
+    greeting,
+  })
+});
 
 console.log({ Foo, Bar, template });
 
@@ -30,4 +40,5 @@ const Demo = <template>
   <Demo @name="WithBlock">
     <WithBlock>had a block passed</WithBlock> <br />
   </Demo>
+  <Demo @name="PreBuilt"><PreBuilt /></Demo>
 </template>
