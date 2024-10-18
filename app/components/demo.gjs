@@ -13,6 +13,8 @@ const Bar = template('Bar: <Foo />', {
   },
 });
 
+const WithBlock = template('{{yield}}');
+
 console.log({ Foo, Bar, template });
 
 <template>
@@ -20,5 +22,5 @@ console.log({ Foo, Bar, template });
   <Bar /><br>
   ---<br>
   <Foo /><br />
-  {{log "Runtime log:" Bar Foo}}
+  <WithBlock>had a block passed</WithBlock> <br />
 </template>
