@@ -1,6 +1,11 @@
 import { template } from '@ember/template-compiler/runtime';
 
-const Foo = template('Hello there', { strict: true });
+const Foo = template('Hello, {{greeting}}', {
+  strict: true,
+  scope: () => ({
+    greeting: 'folks',
+  })
+});
 
 const Bar = template('Bar: <Foo />', {
   eval: function () {
@@ -8,7 +13,11 @@ const Bar = template('Bar: <Foo />', {
   },
 });
 
+console.log({ Foo, Bar, template });
+
 <template>
   hi.
-  <Bar />
+  <Bar /><br>
+  ---<br>
+  <Foo /><br>
 </template>
