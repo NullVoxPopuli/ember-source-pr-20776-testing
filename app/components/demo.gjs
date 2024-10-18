@@ -17,10 +17,17 @@ const WithBlock = template('{{yield}}');
 
 console.log({ Foo, Bar, template });
 
+const Demo = <template>
+  <fieldset><legend>{{@name}}</legend>
+    {{yield}}
+  </fieldset>
+</template>;
+
 <template>
   hi.
-  <Bar /><br>
-  ---<br>
-  <Foo /><br />
-  <WithBlock>had a block passed</WithBlock> <br />
+  <Demo @name="Bar"><Bar /></Demo>
+  <Demo @name="Foo"><Foo /></Demo>
+  <Demo @name="WithBlock">
+    <WithBlock>had a block passed</WithBlock> <br />
+  </Demo>
 </template>
