@@ -19,5 +19,6 @@ console.log({ Foo, Bar, template });
   hi.
   <Bar /><br>
   ---<br>
-  <Foo /><br>
+  <Foo /><br />
+  {{log "Runtime log:" Bar Foo}}
 </template>
