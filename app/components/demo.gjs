@@ -17,6 +17,13 @@ const Bar = template('Bar: <Foo />', {
 });
 
 const WithBlock = template('{{yield}}');
+const BlockWithYields = template('{{yield greeting}}', {
+  strict: true,
+  scope: () => ({
+    greeting,
+  })
+});
+
 
 const PreBuilt = buildTimeProbably('Built by tooling {{greeting}}', {
   strict: true,
@@ -41,4 +48,9 @@ const Demo = <template>
     <WithBlock>had a block passed</WithBlock> <br />
   </Demo>
   <Demo @name="PreBuilt"><PreBuilt /></Demo>
+  <Demo @name="BlockWithYields">
+    <BlockWithYields as |greeting|>
+      Hello, "{{greeting}}" &lt;- should not be empty
+    </BlockWithYields>
+  </Demo>
 </template>
